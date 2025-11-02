@@ -58,17 +58,17 @@ def main():
         print("\n🎨 Generating image prompts with GPT-4o...")
         generate_image_prompts(script_path, image_prompts_path)
 
-        print("\n🌄 Generating images with Google Gemini (gemini-2.0-flash-exp)...")
+        print("\n🌄 Generating images with Google Gemini (gemini-2.5-flash-image)...")
         generate_images(image_prompts_path, images_dir)
 
-        print("\n🔊 Generating audio with ElevenLabs (Hindi voice)...")
+        print("\n🔊 Generating audio with Google Gemini TTS...")
         generate_audio(script_path, audio_dir)
 
         print("\n🔍 Generating captions with OpenAI Whisper...")
-        generate_captions(audio_dir / "voiceover.mp3", captions_dir)
+        generate_captions(audio_dir / "voiceover.wav", captions_dir)
 
         print("\n🎥 Composing video with MoviePy...")
-        create_video(images_dir, audio_dir / "voiceover.mp3", video_path)
+        create_video(images_dir, audio_dir / "voiceover.wav", video_path)
 
         print("\n📝 Adding captions to video...")
         add_captions(video_path, captions_dir / "captions.json", final_video_path)
@@ -80,7 +80,7 @@ def main():
         print(f"  📝 Total duration: {script_data['total_duration']}s")
         print(f"  🎬 Number of scenes: {len(script_data['scenes'])}")
         print(f"  🖼️  Generated images: {len(list(images_dir.glob('*.jpeg')))}/20")
-        print(f"  🔊 Audio generated: {'✓' if os.path.exists(audio_dir / 'voiceover.mp3') else '✗'}")
+        print(f"  🔊 Audio generated: {'✓' if os.path.exists(audio_dir / 'voiceover.wav') else '✗'}")
         print(f"  🔍 Captions generated: {'✓' if os.path.exists(captions_dir / 'captions.json') else '✗'}")
         print(f"  🎥 Base video: {'✓' if os.path.exists(video_path) else '✗'}")
         print(f"  🎬 Final video: {'✓' if os.path.exists(final_video_path) else '✗'}")

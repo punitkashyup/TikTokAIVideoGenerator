@@ -2,62 +2,72 @@ import json
 import os
 from pathlib import Path
 from typing import Optional
-from elevenlabs import VoiceSettings
-from elevenlabs.client import ElevenLabs
+import wave
 from dotenv import load_dotenv
+from google import genai
+from google.genai import types
 
 # Load environment variables from .env file
 load_dotenv()
 
-def get_elevenlabs_api_key() -> str:
-    """Get ElevenLabs API key from environment variable"""
-    api_key = os.getenv("ELEVENLABS_API_KEY")
+def get_google_api_key() -> str:
+    """Get Google API key from environment variable"""
+    api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
-        raise ValueError("ELEVENLABS_API_KEY environment variable not found. Please set it in .env file.")
+        raise ValueError("GOOGLE_API_KEY environment variable not found. Please set it in .env file.")
     return api_key
 
-def generate_audio(text: str, output_path: Path, voice_id: str = "1qEiC6qsybMkmnNdVMbK") -> bool:
+def wave_file(filename: str, pcm: bytes, channels: int = 1, rate: int = 24000, sample_width: int = 2):
+    """Save PCM audio data as a WAV file"""
+    with wave.open(filename, "wb") as wf:
+        wf.setnchannels(channels)
+        wf.setsampwidth(sample_width)
+        wf.setframerate(rate)
+        wf.writeframes(pcm)
+
+def generate_audio(text: str, output_path: Path, voice_name: str = "Kore") -> bool:
     """
-    Generate audio using ElevenLabs API with Eleven Multilingual v2 model.
+    Generate audio using Google Gemini TTS API.
     Args:
         text: Text to convert to speech
         output_path: Path to save the audio file
-        voice_id: Voice ID (default: "1qEiC6qsybMkmnNdVMbK" - Monika Sogam Hindi)
+        voice_name: Voice name (default: "Kore")
     Returns:
         True if successful, False otherwise.
     """
     try:
-        api_key = get_elevenlabs_api_key()
-        client = ElevenLabs(api_key=api_key)
+        api_key = get_google_api_key()
+        client = genai.Client(api_key=api_key)
 
-        print(f"🎙️  Generating audio with ElevenLabs (Voice: {voice_id})...")
+        print(f"🎙️  Generating audio with Google Gemini TTS (Voice: {voice_name})...")
 
-        # Generate audio using ElevenLabs
-        response = client.text_to_speech.convert(
-            voice_id=voice_id,
-            optimize_streaming_latency="0",
-            output_format="mp3_44100_128",
-            text=text,
-            model_id="eleven_multilingual_v2",
-            voice_settings=VoiceSettings(
-                stability=0.5,
-                similarity_boost=0.75,
-                style=0.0,
-                use_speaker_boost=True,
-            ),
+        # Generate audio using Google Gemini TTS
+        response = client.models.generate_content(
+            model="gemini-2.5-pro-preview-tts",
+            contents=text,
+            config=types.GenerateContentConfig(
+                response_modalities=["AUDIO"],
+                speech_config=types.SpeechConfig(
+                    voice_config=types.VoiceConfig(
+                        prebuilt_voice_config=types.PrebuiltVoiceConfig(
+                            voice_name=voice_name,
+                        )
+                    )
+                ),
+            )
         )
 
-        # Save the audio file
-        with open(output_path, "wb") as f:
-            for chunk in response:
-                if chunk:
-                    f.write(chunk)
+        # Extract audio data from response
+        audio_data = response.candidates[0].content.parts[0].inline_data.data
 
-        print(f"✅ Audio generated using ElevenLabs: {output_path}")
+        # Save as WAV file
+        wave_file(str(output_path), audio_data)
+
+        print(f"✅ Audio generated using Google Gemini TTS: {output_path}")
         return True
 
     except Exception as e:
-        print(f"⚠️ ElevenLabs TTS failed: {str(e)}")
+        print(f"⚠️ Google Gemini TTS failed: {str(e)}")
         return False
 
 def main(script_path: Path, output_dir: Path) -> None:
@@ -67,16 +77,16 @@ def main(script_path: Path, output_dir: Path) -> None:
     try:
         with open(script_path, "r") as f:
             script_data = json.load(f)
-        
+
         script_text = script_data.get("script", "")
         if not script_text:
             raise ValueError("Script text is empty")
 
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        audio_path = output_dir / "voiceover.mp3"
+        audio_path = output_dir / "voiceover.wav"
         if not generate_audio(script_text, audio_path):
-            raise RuntimeError("Failed to generate audio using ElevenLabs")
+            raise RuntimeError("Failed to generate audio using Google Gemini TTS")
 
         print(f"✅ Audio saved to: {audio_path}")
 

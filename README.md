@@ -13,8 +13,8 @@ This project is a Python-based tool for generating vertical videos optimized for
 ## Features
 
 - **Script Generation**: Create engaging video scripts using OpenAI's GPT-4o model.
-- **Image Generation**: Generate high-quality images using Google Gemini 2.0 Flash (experimental).
-- **Audio Generation**: Convert scripts to natural-sounding audio using ElevenLabs with Eleven Multilingual v2 (Hindi voice support).
+- **Image Generation**: Generate high-quality images using Google Gemini 2.5 Flash Image.
+- **Audio Generation**: Convert scripts to natural-sounding audio using Google Gemini TTS.
 - **Caption Generation**: Transcribe audio to precise word-level captions using OpenAI's Whisper model.
 - **Video Composition**: Combine images, audio, and captions into a final video using MoviePy.
 - **Cross-Platform Support**: Automatically detects and configures ImageMagick on Windows, macOS, and Linux.
@@ -29,8 +29,7 @@ Before running the project, ensure you have the following:
 1. **Python 3.11+**: Install Python from [python.org](https://www.python.org/downloads/).
 2. **API Keys**:
    - **OpenAI API key** (for script generation and image prompts) - [Get API Key](https://platform.openai.com/api-keys)
-   - **Google Gemini API key** (for image generation) - [Get API Key](https://makersuite.google.com/app/apikey)
-   - **ElevenLabs API key** (for audio synthesis) - [Get API Key](https://elevenlabs.io/app/settings/api-keys)
+   - **Google Gemini API key** (for image generation and audio synthesis) - [Get API Key](https://makersuite.google.com/app/apikey)
 3. **FFmpeg**: Required for audio and video processing. Download from [ffmpeg.org](https://ffmpeg.org/).
 4. **ImageMagick**: Required for caption overlay on videos.
    - **macOS**: `brew install imagemagick`
@@ -62,9 +61,6 @@ Before running the project, ensure you have the following:
 
    # Google Gemini API Configuration
    GOOGLE_API_KEY=your-google-api-key-here
-
-   # ElevenLabs API Configuration
-   ELEVENLABS_API_KEY=your-elevenlabs-api-key-here
    ```
 
 4. **Install FFmpeg:**
@@ -98,7 +94,7 @@ python main.py
      - `script.json`: Generated script.
      - `image_prompts.json`: Image prompts.
      - `images/`: Generated images.
-     - `audio/voiceover.mp3`: Generated audio.
+     - `audio/voiceover.wav`: Generated audio.
      - `captions/captions.json`: Generated captions (if full video is selected).
      - `final_video.mp4`: Video without captions (if full video is selected).
      - `final_video_with_captions.mp4`: Final video with captions (if full video is selected).
@@ -119,16 +115,16 @@ python main.py
 - Saves the prompts as `image_prompts.json`.
 
 ### 3. Image Generation
-- Uses **Google Gemini 2.0 Flash** (experimental) to generate high-quality images.
-- Model: `gemini-2.0-flash-exp`
+- Uses **Google Gemini 2.5 Flash Image** to generate high-quality images.
+- Model: `gemini-2.5-flash-image`
 - Aspect ratio: 9:16 (vertical format for TikTok/Reels)
 - Saves images in the `images/` folder.
 
 ### 4. Audio Generation
-- Uses **ElevenLabs** with Eleven Multilingual v2 model.
-- Voice: Monika Sogam Hindi (Voice ID: `1qEiC6qsybMkmnNdVMbK`)
-- High-quality MP3 output at 44.1kHz, 128kbps.
-- Saves the audio as `audio/voiceover.mp3`.
+- Uses **Google Gemini TTS** with gemini-2.5-pro-preview-tts model.
+- Voice: Kore (customizable)
+- High-quality WAV output at 24kHz.
+- Saves the audio as `audio/voiceover.wav`.
 
 ### 5. Caption Generation (Full Video Only)
 - Uses **OpenAI Whisper (small.en)** to transcribe audio with word-level timestamps.
@@ -164,12 +160,11 @@ python main.py
 - Codec: H.264 (libx264) for video, AAC for audio.
 - Image transitions: Fade-in/fade-out (0.5 seconds).
 
-### Voice Settings (ElevenLabs)
+### Voice Settings (Google Gemini TTS)
 You can customize voice settings in `utils/audio_generator.py`:
-- **Stability**: 0.5 (controls consistency)
-- **Similarity Boost**: 0.75 (voice clarity)
-- **Speaker Boost**: Enabled
-- **Voice ID**: Change to any ElevenLabs voice ID
+- **Voice Name**: Change the `voice_name` parameter (default: "Kore")
+- **Model**: gemini-2.5-pro-preview-tts
+- Available voices can be found in the Google Gemini TTS documentation
 
 ---
 
@@ -191,11 +186,6 @@ You can customize voice settings in `utils/audio_generator.py`:
 - Check API quota/credits:
   - **OpenAI**: [Usage Dashboard](https://platform.openai.com/usage)
   - **Google Gemini**: [API Console](https://console.cloud.google.com/)
-  - **ElevenLabs**: [Subscription Page](https://elevenlabs.io/app/subscription)
-
-### Voice ID Issues (ElevenLabs)
-- Ensure the voice ID in `utils/audio_generator.py` is correct.
-- Find voice IDs in your [ElevenLabs Voice Library](https://elevenlabs.io/app/voice-library).
 
 ### Dependency Issues
 - Reinstall dependencies: `pip install -r requirements.txt --upgrade`
@@ -212,8 +202,8 @@ This project is licensed under the Creative Commons Zero v1.0 Universal license.
 ## Technology Stack
 
 - **OpenAI GPT-4o**: Script and image prompt generation.
-- **Google Gemini 2.0 Flash**: AI-powered image generation.
-- **ElevenLabs**: Premium text-to-speech with multilingual support.
+- **Google Gemini 2.5 Flash Image**: AI-powered image generation.
+- **Google Gemini TTS**: Text-to-speech audio generation.
 - **OpenAI Whisper**: State-of-the-art speech-to-text transcription.
 - **MoviePy**: Video composition and editing.
 - **FFmpeg**: Audio/video encoding and processing.

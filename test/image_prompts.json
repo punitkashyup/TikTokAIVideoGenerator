@@ -1,7 +1,7 @@
 {
   "prompts": [
     {
-      "subject": "Stormy scene in Gokul",
+      "subject": "Young Krishna sneaking into a house with friends",
       "artform": [
         "digital painting",
         "concept art",
@@ -9,45 +9,44 @@
       ],
       "phototype": [
         "wide shot",
-        "dramatic lighting"
+        "playful atmosphere"
       ],
       "scene_details": {
         "place": [
-          "Gokul village",
-          "small temple"
+          "traditional Indian village",
+          "inside a house"
         ],
         "lighting": [
-          "dark clouds",
-          "stormy atmosphere"
+          "soft daylight",
+          "warm tones"
         ],
         "composition": [
-          "villagers praying",
-          "contrast between chaos and calm"
+          "focus on mischief and camaraderie",
+          "dynamic group action"
         ]
       },
       "background": [
-        "dark clouds",
-        "temple",
-        "villagers"
+        "village decor",
+        "hanging butter pots"
       ],
       "additional_details": {
-        "wearing": "traditional Indian attire",
-        "holding": "prayer hands"
+        "wearing": "traditional village attire",
+        "holding": "none"
       },
       "photography_style": [
         "Indian mythology art",
-        "epic fantasy realism"
+        "storybook illustration"
       ],
       "device": [
         "digital art tablet"
       ],
       "artist": [
         "Raja Ravi Varma",
-        "Greg Rutkowski"
+        "Grant Morrison"
       ]
     },
     {
-      "subject": "Young Krishna amidst chaos",
+      "subject": "Krishna plotting to get the butter",
       "artform": [
         "digital painting",
         "concept art",
@@ -55,131 +54,44 @@
       ],
       "phototype": [
         "medium shot",
-        "emotional lighting"
+        "highlighted expression"
       ],
       "scene_details": {
         "place": [
-          "Gokul village"
+          "village house",
+          "interior"
         ],
         "lighting": [
-          "soft light on Krishna",
-          "chaotic background"
+          "soft indoor lighting",
+          "highlight on Krishna's face"
         ],
         "composition": [
-          "Krishna's calm smile",
-          "villagers around"
+          "emphasize Krishna's smile and eyes",
+          "butter pot in background"
         ]
       },
       "background": [
-        "storm",
-        "villagers"
+        "village house interior",
+        "hanging pot"
       ],
       "additional_details": {
-        "wearing": "traditional dhoti",
-        "holding": "confident smile"
+        "wearing": "simple village clothing",
+        "holding": "none"
       },
       "photography_style": [
         "Indian mythology art",
-        "epic fantasy realism"
+        "character portrait"
       ],
       "device": [
         "digital art tablet"
       ],
       "artist": [
         "Raja Ravi Varma",
-        "Greg Rutkowski"
+        "Pablo Picasso"
       ]
     },
     {
-      "subject": "Krishna lifting Govardhan",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "heroic shot",
-        "divine lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "under Govardhan mountain"
-        ],
-        "lighting": [
-          "divine glow",
-          "focus on Krishna"
-        ],
-        "composition": [
-          "Krishna with little finger raised",
-          "villagers sheltered"
-        ]
-      },
-      "background": [
-        "mountain",
-        "villagers"
-      ],
-      "additional_details": {
-        "wearing": "peacock feather crown",
-        "holding": "Govardhan mountain"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "epic fantasy realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Villagers' amazement and gratitude",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "close-up shot",
-        "emotional lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "under Govardhan mountain"
-        ],
-        "lighting": [
-          "soft glow",
-          "expressive faces"
-        ],
-        "composition": [
-          "villagers looking up",
-          "expressions of wonder"
-        ]
-      },
-      "background": [
-        "under mountain",
-        "Krishna"
-      ],
-      "additional_details": {
-        "wearing": "traditional Indian attire",
-        "holding": "folded hands"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "epic fantasy realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Krishna worshipped by villagers",
+      "subject": "Krishna's friends challenging him",
       "artform": [
         "digital painting",
         "concept art",
@@ -187,32 +99,33 @@
       ],
       "phototype": [
         "wide shot",
-        "divine lighting"
+        "dynamic interaction"
       ],
       "scene_details": {
         "place": [
-          "village setting"
+          "village square",
+          "open space"
         ],
         "lighting": [
-          "heavenly light",
-          "focus on Krishna"
+          "morning light",
+          "natural ambiance"
         ],
         "composition": [
-          "Krishna with divine aura",
-          "villagers offering flowers"
+          "focus on group dynamics",
+          "Krishna looking up"
         ]
       },
       "background": [
-        "village",
-        "temple"
+        "village scenery",
+        "hanging butter pot"
       ],
       "additional_details": {
-        "wearing": "traditional dhoti and crown",
-        "holding": "divine aura"
+        "wearing": "traditional village attire",
+        "holding": "none"
       },
       "photography_style": [
         "Indian mythology art",
-        "epic fantasy realism"
+        "narrative scene"
       ],
       "device": [
         "digital art tablet"
@@ -223,177 +136,228 @@
       ]
     },
     {
-      "subject": "Krishna playing the flute",
+      "subject": "Krishna forming a human pyramid",
       "artform": [
         "digital painting",
         "concept art",
         "cinematic illustration"
       ],
       "phototype": [
-        "serene shot",
-        "peaceful lighting"
+        "wide shot",
+        "action-focused"
       ],
       "scene_details": {
         "place": [
-          "natural setting"
+          "village square",
+          "around a pot"
         ],
         "lighting": [
-          "soft glow",
-          "emphasis on harmony"
+          "daylight",
+          "highlight on Krishna climbing"
         ],
         "composition": [
-          "Krishna with flute",
-          "peaceful expression"
+          "vertical composition",
+          "focus on teamwork"
         ]
       },
       "background": [
-        "nature",
-        "birds"
+        "village setting",
+        "butter pot at the top"
       ],
       "additional_details": {
-        "wearing": "peacock feather crown",
+        "wearing": "simple clothing",
+        "holding": "none"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "dynamic storytelling"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "Jack Kirby"
+      ]
+    },
+    {
+      "subject": "Krishna reaching the butter pot",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "close-up shot",
+        "triumphant expression"
+      ],
+      "scene_details": {
+        "place": [
+          "village square",
+          "at the top of the pyramid"
+        ],
+        "lighting": [
+          "bright daylight",
+          "focus on Krishna"
+        ],
+        "composition": [
+          "emphasize success and joy",
+          "Krishna at the peak"
+        ]
+      },
+      "background": [
+        "village view from above",
+        "cheering friends below"
+      ],
+      "additional_details": {
+        "wearing": "simple village attire",
+        "holding": "butter pot"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "celebratory moment"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "Mike Mignola"
+      ]
+    },
+    {
+      "subject": "Villagers admiring Krishna's skills",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "wide shot",
+        "observational perspective"
+      ],
+      "scene_details": {
+        "place": [
+          "village square",
+          "public space"
+        ],
+        "lighting": [
+          "soft afternoon light",
+          "gentle ambiance"
+        ],
+        "composition": [
+          "focus on admiration and respect",
+          "Krishna in the center"
+        ]
+      },
+      "background": [
+        "village houses",
+        "gathered crowd"
+      ],
+      "additional_details": {
+        "wearing": "traditional attire",
+        "holding": "none"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "community scene"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "Norman Rockwell"
+      ]
+    },
+    {
+      "subject": "Krishna and friends celebrating",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "group shot",
+        "joyful atmosphere"
+      ],
+      "scene_details": {
+        "place": [
+          "village square",
+          "open space"
+        ],
+        "lighting": [
+          "warm sunset glow",
+          "happy ambiance"
+        ],
+        "composition": [
+          "focus on group joy and unity",
+          "Krishna at the center"
+        ]
+      },
+      "background": [
+        "village landscape",
+        "smiling faces"
+      ],
+      "additional_details": {
+        "wearing": "festive village attire",
+        "holding": "none"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "joyful narrative"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "Alex Ross"
+      ]
+    },
+    {
+      "subject": "Krishna as a child with his divine aura",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "medium shot",
+        "spiritual focus"
+      ],
+      "scene_details": {
+        "place": [
+          "celestial setting",
+          "divine realm"
+        ],
+        "lighting": [
+          "ethereal glow",
+          "divine light"
+        ],
+        "composition": [
+          "focus on Krishna's divine nature",
+          "aura surrounding him"
+        ]
+      },
+      "background": [
+        "clouds",
+        "heavenly light"
+      ],
+      "additional_details": {
+        "wearing": "divine ornaments",
         "holding": "flute"
       },
       "photography_style": [
         "Indian mythology art",
-        "epic fantasy realism"
+        "spiritual portrait"
       ],
       "device": [
         "digital art tablet"
       ],
       "artist": [
         "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Call to action with vibrant text",
-      "artform": [
-        "graphic design",
-        "digital art"
-      ],
-      "phototype": [
-        "text-focused",
-        "inviting lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "digital space"
-        ],
-        "lighting": [
-          "bright colors",
-          "dynamic text"
-        ],
-        "composition": [
-          "vibrant text",
-          "inviting viewers"
-        ]
-      },
-      "background": [
-        "vibrant colors",
-        "Indian motifs"
-      ],
-      "additional_details": {
-        "wearing": "n/a",
-        "holding": "n/a"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "graphic design"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "n/a"
-      ]
-    },
-    {
-      "subject": "Krishna's divine childhood",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "mythical shot",
-        "ethereal lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "Gokul"
-        ],
-        "lighting": [
-          "divine aura",
-          "focus on Krishna"
-        ],
-        "composition": [
-          "young Krishna",
-          "divine essence"
-        ]
-      },
-      "background": [
-        "village",
-        "nature"
-      ],
-      "additional_details": {
-        "wearing": "traditional ornaments",
-        "holding": "divine aura"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "epic fantasy realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Krishna's playful nature",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "playful shot",
-        "joyful lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "Vrindavan"
-        ],
-        "lighting": [
-          "sunlit",
-          "focus on joy"
-        ],
-        "composition": [
-          "Krishna playing with friends",
-          "lively atmosphere"
-        ]
-      },
-      "background": [
-        "fields",
-        "trees"
-      ],
-      "additional_details": {
-        "wearing": "floral garland",
-        "holding": "flute"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "epic fantasy realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
+        "William Blake"
       ]
     },
     {
@@ -404,176 +368,90 @@
         "cinematic illustration"
       ],
       "phototype": [
-        "dance shot",
-        "graceful lighting"
+        "dynamic shot",
+        "motion emphasis"
       ],
       "scene_details": {
         "place": [
-          "forest glade"
+          "celestial realm",
+          "divine landscape"
         ],
         "lighting": [
-          "moonlit",
-          "harmonious"
+          "radiant light",
+          "ethereal ambiance"
         ],
         "composition": [
-          "Krishna dancing",
-          "celestial grace"
+          "focus on graceful movement",
+          "divine elegance"
         ]
       },
       "background": [
-        "forest",
-        "moon"
+        "celestial clouds",
+        "divine symbols"
       ],
       "additional_details": {
-        "wearing": "colorful attire",
+        "wearing": "traditional dance attire",
         "holding": "flute"
       },
       "photography_style": [
         "Indian mythology art",
-        "epic fantasy realism"
+        "dynamic movement"
       ],
       "device": [
         "digital art tablet"
       ],
       "artist": [
         "Raja Ravi Varma",
-        "Greg Rutkowski"
+        "Degas"
       ]
     },
     {
-      "subject": "Krishna with cows",
+      "subject": "Krishna playing the flute under a tree",
       "artform": [
         "digital painting",
         "concept art",
         "cinematic illustration"
       ],
       "phototype": [
-        "pastoral shot",
-        "calm lighting"
+        "calm shot",
+        "serene setting"
       ],
       "scene_details": {
         "place": [
-          "pasture"
+          "forest glade",
+          "natural setting"
         ],
         "lighting": [
-          "gentle sunlight",
-          "peaceful setting"
+          "dappled sunlight",
+          "peaceful glow"
         ],
         "composition": [
-          "Krishna with cows",
-          "serene interaction"
+          "focus on tranquility and music",
+          "Krishna under the tree"
         ]
       },
       "background": [
-        "pasture",
-        "trees"
+        "lush greenery",
+        "river in distance"
       ],
       "additional_details": {
-        "wearing": "simple dhoti",
+        "wearing": "simple attire",
         "holding": "flute"
       },
       "photography_style": [
         "Indian mythology art",
-        "pastoral realism"
+        "serene landscape"
       ],
       "device": [
         "digital art tablet"
       ],
       "artist": [
         "Raja Ravi Varma",
-        "Greg Rutkowski"
+        "Claude Monet"
       ]
     },
     {
-      "subject": "Krishna's mother Yashoda",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "intimate shot",
-        "warm lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "home in Gokul"
-        ],
-        "lighting": [
-          "soft glow",
-          "maternal affection"
-        ],
-        "composition": [
-          "Yashoda with Krishna",
-          "loving embrace"
-        ]
-      },
-      "background": [
-        "home interior",
-        "simple decor"
-      ],
-      "additional_details": {
-        "wearing": "traditional sari",
-        "holding": "Krishna in arms"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "epic fantasy realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Krishna and the serpent Kaliya",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "action shot",
-        "dramatic lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "Yamuna river"
-        ],
-        "lighting": [
-          "intense contrast",
-          "focus on action"
-        ],
-        "composition": [
-          "Krishna subduing Kaliya",
-          "dynamic motion"
-        ]
-      },
-      "background": [
-        "river",
-        "serpent"
-      ],
-      "additional_details": {
-        "wearing": "traditional dhoti",
-        "holding": "serpent's hood"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "epic fantasy realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Krishna with Radha",
+      "subject": "Krishna and Radha in a divine embrace",
       "artform": [
         "digital painting",
         "concept art",
@@ -581,259 +459,445 @@
       ],
       "phototype": [
         "romantic shot",
-        "soft lighting"
+        "emotional connection"
       ],
       "scene_details": {
         "place": [
-          "flower garden"
+          "celestial garden",
+          "divine realm"
         ],
         "lighting": [
-          "gentle glow",
-          "focus on love"
+          "luminous glow",
+          "romantic ambiance"
         ],
         "composition": [
-          "Krishna with Radha",
-          "romantic embrace"
+          "focus on love and unity",
+          "Krishna and Radha together"
         ]
       },
       "background": [
-        "flowers",
-        "trees"
+        "heavenly flowers",
+        "ethereal landscape"
       ],
       "additional_details": {
-        "wearing": "traditional attire",
+        "wearing": "traditional divine attire",
+        "holding": "each other"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "romantic portrait"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "John William Waterhouse"
+      ]
+    },
+    {
+      "subject": "Krishna's divine chariot ride",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "action shot",
+        "epic scale"
+      ],
+      "scene_details": {
+        "place": [
+          "battlefield",
+          "epic setting"
+        ],
+        "lighting": [
+          "dramatic sunlight",
+          "heroic glow"
+        ],
+        "composition": [
+          "focus on power and speed",
+          "Krishna's chariot in motion"
+        ]
+      },
+      "background": [
+        "dust clouds",
+        "warriors in distance"
+      ],
+      "additional_details": {
+        "wearing": "warrior attire",
+        "holding": "reins"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "epic narrative"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "Frank Frazetta"
+      ]
+    },
+    {
+      "subject": "Krishna revealing his divine form",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "dramatic shot",
+        "revelation emphasis"
+      ],
+      "scene_details": {
+        "place": [
+          "celestial realm",
+          "divine setting"
+        ],
+        "lighting": [
+          "blinding light",
+          "divine radiance"
+        ],
+        "composition": [
+          "focus on transformation",
+          "Krishna's divine form"
+        ]
+      },
+      "background": [
+        "cosmic elements",
+        "celestial glow"
+      ],
+      "additional_details": {
+        "wearing": "divine ornaments",
+        "holding": "none"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "transcendent portrait"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "Alex Grey"
+      ]
+    },
+    {
+      "subject": "Krishna lifting Govardhan Hill",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "heroic shot",
+        "strength focus"
+      ],
+      "scene_details": {
+        "place": [
+          "village outskirts",
+          "landscape setting"
+        ],
+        "lighting": [
+          "stormy skies",
+          "dramatic contrast"
+        ],
+        "composition": [
+          "focus on power and protection",
+          "Krishna holding the hill"
+        ]
+      },
+      "background": [
+        "storm clouds",
+        "villagers seeking shelter"
+      ],
+      "additional_details": {
+        "wearing": "simple attire",
+        "holding": "Govardhan Hill"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "heroic narrative"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "Boris Vallejo"
+      ]
+    },
+    {
+      "subject": "Krishna in the Ras Leela dance",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "dynamic dance shot",
+        "cultural vibrancy"
+      ],
+      "scene_details": {
+        "place": [
+          "forest clearing",
+          "divine dance floor"
+        ],
+        "lighting": [
+          "moonlit glow",
+          "festive ambiance"
+        ],
+        "composition": [
+          "focus on rhythm and joy",
+          "Krishna dancing with Gopis"
+        ]
+      },
+      "background": [
+        "forest trees",
+        "dancing Gopis"
+      ],
+      "additional_details": {
+        "wearing": "traditional dance attire",
+        "holding": "none"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "dynamic cultural scene"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "Edgar Degas"
+      ]
+    },
+    {
+      "subject": "Krishna in the divine river Yamuna",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "serene shot",
+        "nature emphasis"
+      ],
+      "scene_details": {
+        "place": [
+          "river Yamuna",
+          "natural setting"
+        ],
+        "lighting": [
+          "gentle morning light",
+          "calm ambiance"
+        ],
+        "composition": [
+          "focus on serenity and divinity",
+          "Krishna in the water"
+        ]
+      },
+      "background": [
+        "flowing river",
+        "lush riverbank"
+      ],
+      "additional_details": {
+        "wearing": "simple attire",
+        "holding": "lotus flower"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "tranquil landscape"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "J.M.W. Turner"
+      ]
+    },
+    {
+      "subject": "Krishna playing Holi with villagers",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "festive shot",
+        "colorful celebration"
+      ],
+      "scene_details": {
+        "place": [
+          "village square",
+          "festive setting"
+        ],
+        "lighting": [
+          "vibrant sunlight",
+          "celebratory glow"
+        ],
+        "composition": [
+          "focus on joy and color",
+          "Krishna leading the celebration"
+        ]
+      },
+      "background": [
+        "bright colors",
+        "laughing villagers"
+      ],
+      "additional_details": {
+        "wearing": "festive attire",
+        "holding": "color powders"
+      },
+      "photography_style": [
+        "Indian mythology art",
+        "festive narrative"
+      ],
+      "device": [
+        "digital art tablet"
+      ],
+      "artist": [
+        "Raja Ravi Varma",
+        "N.C. Wyeth"
+      ]
+    },
+    {
+      "subject": "Krishna with a peacock in the forest",
+      "artform": [
+        "digital painting",
+        "concept art",
+        "cinematic illustration"
+      ],
+      "phototype": [
+        "peaceful shot",
+        "nature connection"
+      ],
+      "scene_details": {
+        "place": [
+          "forest glade",
+          "natural setting"
+        ],
+        "lighting": [
+          "soft sunlight",
+          "peaceful glow"
+        ],
+        "composition": [
+          "focus on harmony with nature",
+          "Krishna interacting with a peacock"
+        ]
+      },
+      "background": [
+        "forest trees",
+        "natural scenery"
+      ],
+      "additional_details": {
+        "wearing": "simple attire",
         "holding": "flute"
       },
       "photography_style": [
         "Indian mythology art",
-        "romantic realism"
+        "nature portrait"
       ],
       "device": [
         "digital art tablet"
       ],
       "artist": [
         "Raja Ravi Varma",
-        "Greg Rutkowski"
+        "John Constable"
       ]
     },
     {
-      "subject": "Krishna and Arjuna in Kurukshetra",
+      "subject": "Krishna as the divine cowherd",
       "artform": [
         "digital painting",
         "concept art",
         "cinematic illustration"
       ],
       "phototype": [
-        "epic shot",
-        "dramatic lighting"
+        "pastoral shot",
+        "countryside setting"
       ],
       "scene_details": {
         "place": [
-          "battlefield of Kurukshetra"
+          "pastoral landscape",
+          "open fields"
         ],
         "lighting": [
-          "intense light",
-          "focus on Krishna"
+          "golden afternoon light",
+          "pastoral ambiance"
         ],
         "composition": [
-          "Krishna as charioteer",
-          "Arjuna with bow"
+          "focus on simplicity and divinity",
+          "Krishna with cows"
         ]
       },
       "background": [
-        "battlefield",
-        "chariot"
+        "open fields",
+        "grazing cows"
       ],
       "additional_details": {
-        "wearing": "warrior attire",
-        "holding": "reins of horses"
+        "wearing": "simple attire",
+        "holding": "flute"
       },
       "photography_style": [
         "Indian mythology art",
-        "epic fantasy realism"
+        "pastoral scene"
       ],
       "device": [
         "digital art tablet"
       ],
       "artist": [
         "Raja Ravi Varma",
-        "Greg Rutkowski"
+        "Jean-Fran\u00e7ois Millet"
       ]
     },
     {
-      "subject": "Krishna teaching Bhagavad Gita",
+      "subject": "Krishna as a young prince",
       "artform": [
         "digital painting",
         "concept art",
         "cinematic illustration"
       ],
       "phototype": [
-        "philosophical shot",
-        "enlightening lighting"
+        "royal portrait",
+        "regal setting"
       ],
       "scene_details": {
         "place": [
-          "chariot in Kurukshetra"
+          "royal palace",
+          "opulent surroundings"
         ],
         "lighting": [
-          "divine glow",
-          "focus on Krishna"
+          "grand lighting",
+          "majestic glow"
         ],
         "composition": [
-          "Krishna speaking",
-          "Arjuna listening"
+          "focus on royalty and divinity",
+          "Krishna in royal attire"
         ]
       },
       "background": [
-        "chariot",
-        "battlefield"
+        "royal hall",
+        "ornate decor"
       ],
       "additional_details": {
-        "wearing": "divine armor",
-        "holding": "philosophical pose"
+        "wearing": "royal attire",
+        "holding": "scepter"
       },
       "photography_style": [
         "Indian mythology art",
-        "philosophical realism"
+        "regal portrait"
       ],
       "device": [
         "digital art tablet"
       ],
       "artist": [
         "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Krishna's divine form",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "divine shot",
-        "radiant lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "celestial realm"
-        ],
-        "lighting": [
-          "blinding light",
-          "focus on divinity"
-        ],
-        "composition": [
-          "Krishna with multiple arms",
-          "celestial beings"
-        ]
-      },
-      "background": [
-        "celestial realm",
-        "divine aura"
-      ],
-      "additional_details": {
-        "wearing": "divine ornaments",
-        "holding": "various weapons"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "epic fantasy realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Krishna's childhood mischief",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "mischievous shot",
-        "playful lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "Gokul"
-        ],
-        "lighting": [
-          "soft light",
-          "focus on playfulness"
-        ],
-        "composition": [
-          "young Krishna with butter",
-          "playful expression"
-        ]
-      },
-      "background": [
-        "village",
-        "butter pots"
-      ],
-      "additional_details": {
-        "wearing": "simple dhoti",
-        "holding": "butter pot"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "mischievous realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
-      ]
-    },
-    {
-      "subject": "Krishna's divine birth",
-      "artform": [
-        "digital painting",
-        "concept art",
-        "cinematic illustration"
-      ],
-      "phototype": [
-        "sacred shot",
-        "miraculous lighting"
-      ],
-      "scene_details": {
-        "place": [
-          "prison cell"
-        ],
-        "lighting": [
-          "divine glow",
-          "focus on newborn Krishna"
-        ],
-        "composition": [
-          "Vasudeva with Krishna",
-          "divine aura"
-        ]
-      },
-      "background": [
-        "prison",
-        "divine light"
-      ],
-      "additional_details": {
-        "wearing": "infant cloth",
-        "holding": "divine aura"
-      },
-      "photography_style": [
-        "Indian mythology art",
-        "sacred realism"
-      ],
-      "device": [
-        "digital art tablet"
-      ],
-      "artist": [
-        "Raja Ravi Varma",
-        "Greg Rutkowski"
+        "John Singer Sargent"
       ]
     }
   ]

@@ -5,7 +5,8 @@ from typing import List, Dict
 from PIL import Image
 from io import BytesIO
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 
 # Load environment variables from .env file
 load_dotenv()
@@ -34,7 +35,7 @@ def generate_images(image_prompts_path: str, output_dir: str) -> None:
 
     # Configure Google Gemini API
     api_key = get_google_api_key()
-    genai.configure(api_key=api_key)
+    client = genai.Client(api_key=api_key)
 
     with open(image_prompts_path, "r") as f:
         prompts_data = json.load(f)
@@ -56,39 +57,35 @@ def generate_images(image_prompts_path: str, output_dir: str) -> None:
 
         try:
             # Generate image using Google Gemini Imagen
-            model = genai.GenerativeModel("gemini-2.0-flash-exp")
-
-            response = model.generate_content(
-                prompt_text,
-                generation_config=genai.GenerationConfig(
-                    response_modalities=["image"]
+            response = client.models.generate_content(
+                model="gemini-2.5-flash-image",
+                contents=[prompt_text],
+                config=types.GenerateContentConfig(
+                    response_modalities=['Image']
                 )
             )
 
-            if response.candidates and len(response.candidates) > 0:
-                candidate = response.candidates[0]
+            # Extract image data from response
+            image_parts = [
+                part.inline_data.data
+                for part in response.candidates[0].content.parts
+                if part.inline_data
+            ]
 
-                if candidate.content.parts:
-                    for part in candidate.content.parts:
-                        if hasattr(part, 'inline_data') and part.inline_data:
-                            # Get image data
-                            image_bytes = part.inline_data.data
+            if image_parts:
+                # Get the first image
+                image_bytes = image_parts[0]
 
-                            existing_files = list(output_dir.glob("*.jpeg"))
-                            next_number = len(existing_files) + 1
-                            image_path = output_dir / f"{next_number}.jpeg"
+                existing_files = list(output_dir.glob("*.jpeg"))
+                next_number = len(existing_files) + 1
+                image_path = output_dir / f"{next_number}.jpeg"
 
-                            # Save the image
-                            img = Image.open(BytesIO(image_bytes))
-                            img.save(image_path, format="JPEG")
-                            print(f"✅ Image saved to {image_path}")
-                            break
-                    else:
-                        print(f"⚠️ No image data found in response for prompt {i}")
-                else:
-                    print(f"⚠️ No content parts in response for prompt {i}")
+                # Save the image
+                img = Image.open(BytesIO(image_bytes))
+                img.save(image_path, format="JPEG")
+                print(f"✅ Image saved to {image_path}")
             else:
-                print(f"⚠️ No candidates in response for prompt {i}")
+                print(f"⚠️ No image generated for prompt {i}")
 
         except Exception as e:
             print(f"⚠️ Failed to generate image {i}: {str(e)}")

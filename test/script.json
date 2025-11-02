@@ -1,47 +1,47 @@
 {
-  "script": "Kya aapko pata hai Krishna ke bachpan ki ek untold kahani? Ek baar, Gokul mein ek bhayankar toofan aaya. Log bahut ghabra gaye aur bhagwan se prarthna karne lage. Krishna, jo sirf ek chhote bacche the, unhone kaha, 'Chinta mat karo, main hoon na!' Aur tab, Krishna ne apni choti ungli par Govardhan parvat utha liya. Pura gaon us parvat ke neeche chhup gaya, aur sab surakshit rahe. Yeh dekh kar sabhi log hairaan reh gaye aur unki bhakti aur bhi badh gayi. Logon ne unhe bhagwan ka roop mana. Krishna ki shakti aur unka pyaar sabke liye ek misaal ban gaya. Unhone sabko dikhaya ki sachcha dharma kya hota hai. Yeh kahani humein sikhati hai ki jab humara vishwas mazboot ho, toh hum kisi bhi mushkil ka samna kar sakte hain. So, agar aapko yeh kahani acchi lagi, to follow kijiye aur jaaniye aur bhi amazing kahaniyan hamari mythology se!",
+  "script": "Kya aapko pata hai Krishna ki bachpan ki kahaniyon mein se ek sabse prachin aur romanchak kahani hai jab unhone apne mitron ke saath chhup-chhup kar maakhan churaya tha? Ek baar, Gokul gaon mein Krishna aur unke saathi maakhan ke liye maange hue gharo mein jaate the. Krishna ke shaitani tareeke aur unki chamakdaar muskaan sabko prabhavit kar deti thi. Ek din, unke mitron ne kaha ki unhe sabse uchai par rakha matki ka maakhan chahiye. Krishna ne apni choti ungli se is musibat ko hal kar diya. Sab bachhe neechi matki ke paas ikattha hue, Krishna ne unhe upar chadhaya aur khud sabse upar chadh gaye. Aise hi Krishna ne sabko dikhaya ki kaise unki shakti aur buddhi se har musibat ko hal kiya ja sakta hai. Yeh kahani sirf unke shaitani tareekeon ki nahi, par unki dosti aur samajhdaari ki bhi hai. Krishna ke is avtaar ko dekh kar gaon wale bhi unki bhakti karne lage. Unhone sabko sikhaya ki dosti aur samajhdaari se hum har chunauti ko paar kar sakte hain. Aapko yeh kahani kaisi lagi? Agar aapko aur bhi aise hi kahaniyan sunni hai, toh humein follow karein aur banein hamare saath is adbhut yatra mein.",
   "scenes": [
     {
       "scene_number": 1,
-      "visual_description": "A stormy scene in Gokul with dark clouds and villagers looking worried as they gather, praying in front of a small temple.",
-      "voiceover_text": "Kya aapko pata hai Krishna ke bachpan ki ek untold kahani?",
+      "visual_description": "A vibrant village scene with young Krishna and friends sneaking into a house, eyeing a pot of butter hanging high. The scene is colorful and lively, depicting the playful mischief of Krishna.",
+      "voiceover_text": "Kya aapko pata hai Krishna ki bachpan ki kahaniyon mein se ek sabse prachin aur romanchak kahani hai jab unhone apne mitron ke saath chhup-chhup kar maakhan churaya tha?",
       "duration_seconds": 3
     },
     {
       "scene_number": 2,
-      "visual_description": "Young Krishna, with a calm demeanor, stands amidst the chaos, assuring the villagers with his confident smile.",
-      "voiceover_text": "Ek baar, Gokul mein ek bhayankar toofan aaya. Log bahut ghabra gaye aur bhagwan se prarthna karne lage.",
+      "visual_description": "Krishna and his friends are inside a traditional village house, looking up at a butter pot. Krishna's mischievous smile is highlighted as he plots to get the butter.",
+      "voiceover_text": "Ek baar, Gokul gaon mein Krishna aur unke saathi maakhan ke liye maange hue gharo mein jaate the. Krishna ke shaitani tareeke aur unki chamakdaar muskaan sabko prabhavit kar deti thi.",
       "duration_seconds": 10
     },
     {
       "scene_number": 3,
-      "visual_description": "Krishna lifting the Govardhan mountain effortlessly on his little finger, with villagers gathered underneath, safe and sound.",
-      "voiceover_text": "Krishna, jo sirf ek chhote bacche the, unhone kaha, 'Chinta mat karo, main hoon na!' Aur tab, Krishna ne apni choti ungli par Govardhan parvat utha liya.",
-      "duration_seconds": 15
+      "visual_description": "Krishna's friends challenge him to get the butter from the highest pot. The scene shows the pot hanging high with Krishna looking up confidently.",
+      "voiceover_text": "Ek din, unke mitron ne kaha ki unhe sabse uchai par rakha matki ka maakhan chahiye. Krishna ne apni choti ungli se is musibat ko hal kar diya.",
+      "duration_seconds": 10
     },
     {
       "scene_number": 4,
-      "visual_description": "Villagers express amazement and gratitude, with a sense of peace and joy as they look up to Krishna.",
-      "voiceover_text": "Pura gaon us parvat ke neeche chhup gaya, aur sab surakshit rahe. Yeh dekh kar sabhi log hairaan reh gaye aur unki bhakti aur bhi badh gayi.",
+      "visual_description": "The scene shows Krishna forming a human pyramid with his friends to reach the pot. Krishna climbs to the top, showcasing his leadership and cleverness.",
+      "voiceover_text": "Sab bachhe neechi matki ke paas ikattha hue, Krishna ne unhe upar chadhaya aur khud sabse upar chadh gaye.",
       "duration_seconds": 10
     },
     {
       "scene_number": 5,
-      "visual_description": "Krishna, surrounded by a divine aura, is worshipped by the villagers as they offer flowers and prayers.",
-      "voiceover_text": "Logon ne unhe bhagwan ka roop mana. Krishna ki shakti aur unka pyaar sabke liye ek misaal ban gaya.",
-      "duration_seconds": 8
+      "visual_description": "Krishna successfully reaches the butter pot, his friends cheering below. The scene captures the joy and camaraderie among them.",
+      "voiceover_text": "Aise hi Krishna ne sabko dikhaya ki kaise unki shakti aur buddhi se har musibat ko hal kiya ja sakta hai.",
+      "duration_seconds": 10
     },
     {
       "scene_number": 6,
-      "visual_description": "A serene scene showing Krishna playing the flute, symbolizing peace and dharma.",
-      "voiceover_text": "Unhone sabko dikhaya ki sachcha dharma kya hota hai.",
-      "duration_seconds": 5
+      "visual_description": "The villagers watch Krishna's antics and are impressed by his skills. They begin to admire and follow him, recognizing his divine qualities.",
+      "voiceover_text": "Yeh kahani sirf unke shaitani tareekeon ki nahi, par unki dosti aur samajhdaari ki bhi hai. Krishna ke is avtaar ko dekh kar gaon wale bhi unki bhakti karne lage.",
+      "duration_seconds": 10
     },
     {
       "scene_number": 7,
-      "visual_description": "A call to action with vibrant text on screen, inviting viewers to follow for more stories.",
-      "voiceover_text": "So, agar aapko yeh kahani acchi lagi, to follow kijiye aur jaaniye aur bhi amazing kahaniyan hamari mythology se!",
-      "duration_seconds": 9
+      "visual_description": "A closing scene with Krishna and friends celebrating, with a message inviting viewers to follow for more stories. The scene is warm and inviting.",
+      "voiceover_text": "Aapko yeh kahani kaisi lagi? Agar aapko aur bhi aise hi kahaniyan sunni hai, toh humein follow karein aur banein hamare saath is adbhut yatra mein.",
+      "duration_seconds": 7
     }
   ],
   "total_duration": 60
