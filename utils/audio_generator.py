@@ -1,69 +1,64 @@
 import json
 import os
-import requests
 from pathlib import Path
 from typing import Optional
-import edge_tts
-import asyncio
+from elevenlabs import VoiceSettings
+from elevenlabs.client import ElevenLabs
+from dotenv import load_dotenv
 
-def generate_audio_kokoro(text: str, output_path: Path, voice: str = "am_michael") -> bool:
+# Load environment variables from .env file
+load_dotenv()
+
+def get_elevenlabs_api_key() -> str:
+    """Get ElevenLabs API key from environment variable"""
+    api_key = os.getenv("ELEVENLABS_API_KEY")
+    if not api_key:
+        raise ValueError("ELEVENLABS_API_KEY environment variable not found. Please set it in .env file.")
+    return api_key
+
+def generate_audio(text: str, output_path: Path, voice_id: str = "1qEiC6qsybMkmnNdVMbK") -> bool:
     """
-    Generate audio using Kokoro TTS API.
-    Returns True if successful, False otherwise.
+    Generate audio using ElevenLabs API with Eleven Multilingual v2 model.
+    Args:
+        text: Text to convert to speech
+        output_path: Path to save the audio file
+        voice_id: Voice ID (default: "1qEiC6qsybMkmnNdVMbK" - Monika Sogam Hindi)
+    Returns:
+        True if successful, False otherwise.
     """
     try:
-        response = requests.post(
-            "https://api.kokorotts.com/v1/audio/speech",
-            json={
-                "model": "kokoro", 
-                "input": text,
-                "voice": voice,
-                "response_format": "mp3",
-                "speed": 1.0
-            },
-            timeout=30  
+        api_key = get_elevenlabs_api_key()
+        client = ElevenLabs(api_key=api_key)
+
+        print(f"🎙️  Generating audio with ElevenLabs (Voice: {voice_id})...")
+
+        # Generate audio using ElevenLabs
+        response = client.text_to_speech.convert(
+            voice_id=voice_id,
+            optimize_streaming_latency="0",
+            output_format="mp3_44100_128",
+            text=text,
+            model_id="eleven_multilingual_v2",
+            voice_settings=VoiceSettings(
+                stability=0.5,
+                similarity_boost=0.75,
+                style=0.0,
+                use_speaker_boost=True,
+            ),
         )
 
-        if response.status_code == 200:
-            with open(output_path, "wb") as f:
-                f.write(response.content)
-            print(f"✅ Audio generated using Kokoro TTS: {output_path}")
-            return True
-        else:
-            print(f"⚠️ Kokoro TTS API error: {response.status_code} - {response.text}")
-            return False
+        # Save the audio file
+        with open(output_path, "wb") as f:
+            for chunk in response:
+                if chunk:
+                    f.write(chunk)
 
-    except Exception as e:
-        print(f"⚠️ Kokoro TTS API failed: {str(e)}")
-        return False
-
-async def generate_audio_edge(text: str, output_path: Path) -> bool:
-    """
-    Generate audio using Edge TTS as a fallback.
-    Returns True if successful, False otherwise.
-    """
-    try:
-        communicate = edge_tts.Communicate(text, "en-US-AriaNeural")
-        await communicate.save(output_path)
-        print(f"✅ Audio generated using Edge TTS: {output_path}")
+        print(f"✅ Audio generated using ElevenLabs: {output_path}")
         return True
 
     except Exception as e:
-        print(f"⚠️ Edge TTS failed: {str(e)}")
+        print(f"⚠️ ElevenLabs TTS failed: {str(e)}")
         return False
-
-def generate_audio(text: str, output_path: Path, voice: str = "af_bella") -> bool:
-    """
-    Generate audio using Kokoro TTS (with fallback to Edge TTS).
-    Returns True if successful, False otherwise.
-    """
-    for attempt in range(2):
-        if generate_audio_kokoro(text, output_path, voice):
-            return True
-        print(f"Retrying Kokoro TTS... (Attempt {attempt + 1}/2)")
-
-    print("⚠️ Kokoro TTS unavailable. Falling back to Edge TTS...")
-    return asyncio.run(generate_audio_edge(text, output_path))
 
 def main(script_path: Path, output_dir: Path) -> None:
     """
@@ -81,7 +76,7 @@ def main(script_path: Path, output_dir: Path) -> None:
 
         audio_path = output_dir / "voiceover.mp3"
         if not generate_audio(script_text, audio_path):
-            raise RuntimeError("Failed to generate audio using both Kokoro and Edge TTS")
+            raise RuntimeError("Failed to generate audio using ElevenLabs")
 
         print(f"✅ Audio saved to: {audio_path}")
 

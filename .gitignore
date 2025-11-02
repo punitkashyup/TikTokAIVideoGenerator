@@ -1,4 +1,5 @@
 my_config.json
+.env
 /video01
 /video02
 **/__pycache__

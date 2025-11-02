@@ -1,37 +1,41 @@
 import json
+import os
 from pathlib import Path
-from groq import Groq
+from textwrap import dedent
+from openai import OpenAI
 from typing import List, Dict
+from dotenv import load_dotenv
 
-def load_api_keys() -> dict:
-    """Load API keys from config.json in root folder"""
-    try:
-        root_dir = Path(__file__).resolve().parent.parent
-        config_path = root_dir / "my_config.json"
-        with open(config_path, "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        raise FileNotFoundError("my_config.json not found in root folder")
-    except json.JSONDecodeError:
-        raise ValueError("Invalid JSON format in my_config.json")
+# Load environment variables from .env file
+load_dotenv()
+
+def get_openai_api_key() -> str:
+    """Get OpenAI API key from environment variable"""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError("OPENAI_API_KEY environment variable not found. Please set it in .env file.")
+    return api_key
 
 def generate_image_prompts(script_data: Dict) -> List[Dict]:
     """
-    Generate 18-20 image prompts using Llama3.3 and the provided metadata schema.
+    Generate 18-20 image prompts using OpenAI GPT-4o and the provided metadata schema.
     Returns a list of image prompts following the specified structure.
     """
     try:
-        api_keys = load_api_keys()
-        groq_api_key = api_keys["groq_api_key"]
+        openai_api_key = get_openai_api_key()
 
-        client = Groq(api_key=groq_api_key)
+        client = OpenAI(api_key=openai_api_key)
 
         scenes = script_data.get("scenes", [])
         script_text = script_data.get("script", "")
 
-        prompt = f"""
-        You are a creative assistant specialized in generating image prompts for AI image generation models. 
-        Create between 18-20 image prompts based on the following video script and scenes:
+        prompt = dedent(f"""
+        You are a creative visual director and AI prompt engineer specialized in generating cinematic, mythological image prompts
+        for AI image generation models (like Midjourney, DALL·E, or Leonardo AI).
+
+        Create **18–20 detailed image prompts** based on the following Indian mythology-inspired video script and scenes.
+
+        Each prompt should visually represent key story moments, emotions, and divine symbolism from the scenes.
 
         VIDEO SCRIPT:
         {script_text}
@@ -39,40 +43,42 @@ def generate_image_prompts(script_data: Dict) -> List[Dict]:
         SCENES:
         {json.dumps(scenes, indent=2)}
 
-        Use this EXACT response format:
+        Follow this EXACT JSON structure (no markdown, no explanations, JSON only):
+
         {{
-          "prompts": [
+        "prompts": [
             {{
-              "subject": "cosmic singularity",
-              "artform": ["digital_artform"],
-              "phototype": ["wide angle"],
-              "scene_details": {{
-                "place": ["cosmic environment"],
-                "lighting": ["neon"],
-                "composition": ["dynamic angles"]
-              }},
-              "background": ["shallow depth of field"],
-              "additional_details": {{
-                "wearing": "energy field",
-                "holding": "quantum particles"
-              }},
-              "photography_style": ["concept art"],
-              "device": ["Sony Alpha 1"],
-              "artist": ["Beeple"]
+            "subject": "Lord Hanuman flying toward the sun",
+            "artform": ["digital painting", "concept art", "cinematic illustration"],
+            "phototype": ["wide shot", "dramatic lighting"],
+            "scene_details": {{
+                "place": ["ancient India", "celestial sky", "temple surroundings"],
+                "lighting": ["golden sunrise", "divine glow"],
+                "composition": ["dynamic motion", "focus on emotion and scale"]
             }},
-            // REPEAT FOR 20 PROMPTS
-          ]
+            "background": ["clouds", "mountains", "divine aura"],
+            "additional_details": {{
+                "wearing": "traditional ornaments and sacred thread",
+                "holding": "mace or mountain"
+            }},
+            "photography_style": ["Indian mythology art", "epic fantasy realism"],
+            "device": ["digital art tablet"],
+            "artist": ["Raja Ravi Varma", "Greg Rutkowski"]
+            }}
+            // Repeat until 20 unique prompts
+        ]
         }}
 
         Rules:
-        1. Generate 20 prompts
-        2. Maintain the JSON structure strictly
-        3. Ensure all prompts follow the metadata schema
-        4. No markdown formatting, only pure JSON
-        """
+        1. Generate **exactly 20 prompts** inspired by the script and scenes.
+        2. Ensure each prompt fits Indian mythology or epic storytelling tone (not sci-fi or modern tech).
+        3. Use natural, culturally accurate visuals — temples, rivers, divine light, nature, weapons, crowns, etc.
+        4. Keep the JSON valid and strictly follow the given format.
+        5. Do not include markdown or extra commentary — only pure JSON output.
+        """)
 
         completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="gpt-4o",
             messages=[
                 {
                     "role": "user",
@@ -80,7 +86,7 @@ def generate_image_prompts(script_data: Dict) -> List[Dict]:
                 }
             ],
             temperature=0.7,
-            max_tokens=4096, 
+            max_tokens=4096,
             response_format={"type": "json_object"}
         )
 

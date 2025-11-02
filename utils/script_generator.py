@@ -1,95 +1,104 @@
 import json
-from groq import Groq
+import os
+from textwrap import dedent
+from openai import OpenAI
+from dotenv import load_dotenv
 
-def load_api_keys() -> dict:
-    """Load API keys from config.json"""
-    try:
-        with open("my_config.json", "r") as f:
-            return json.load(f)
-    except FileNotFoundError:
-        raise FileNotFoundError("my_config.json not found. Please create it with your API keys.")
-    except json.JSONDecodeError:
-        raise ValueError("Invalid JSON format in my_config.json.")
+# Load environment variables from .env file
+load_dotenv()
+
+def get_openai_api_key() -> str:
+    """Get OpenAI API key from environment variable"""
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError("OPENAI_API_KEY environment variable not found. Please set it in .env file.")
+    return api_key
 
 def generate_script(topic: str, style: str, target_audience: str, cta: str) -> dict:
     """
-    Generates a video script using Groq Cloud API with Llama3-70b-8192.
+    Generates a video script using OpenAI API with GPT-4o.
     Returns a dictionary with script and scene descriptions.
     """
     try:
-        api_keys = load_api_keys()
-        groq_api_key = api_keys["groq_api_key"]
+        openai_api_key = get_openai_api_key()
 
-        client = Groq(api_key=groq_api_key)
+        client = OpenAI(api_key=openai_api_key)
 
-        prompt = f"""
-        You are a creative assistant specialized in writing engaging and dynamic video scripts for TikTok. Your goal is to create scripts that maximize viewer retention. The video must:
-        1. Capture attention in the first 3 seconds with a bold statement, intriguing question, or surprising fact.
-        2. Deliver concise, valuable, or entertaining content in the body (50–65 seconds) using clear and energetic language with snappy pacing.
-        3. Include a compelling call-to-action (CTA) in the last 10 seconds that encourages likes, shares, follows, or comments.
+        prompt = dedent(f"""
+        You are a creative assistant specialized in writing short, high-retention video scripts for TikTok/Instagram Reels/Shorts.
+        We are making an Indian mythology storytelling video in a Hinglish-friendly style. Follow these rules exactly:
 
-        Create a video script with 250 to 280 tokens based on the following details:
+        1) HOOK (first 3 seconds): Open with a bold, surprising, or emotional line that grabs attention.
+        2) BODY (next ~50–65 seconds): Tell the mythic story concisely, with vivid sensory details, dramatic pacing, and simple Hinglish/English phrases. Keep sentences short and punchy — perfect for TTS narration.
+        3) CTA (last ~7–10 seconds): Finish with a clear call-to-action (like follow, share, comment), delivered emotionally.
+
+        Content requirements:
         - Topic: {topic}
-        - Style: {style}
+        - Style: {style}  # e.g., "dramatic, emotional, conversational, Hinglish"
         - Target Audience: {target_audience}
         - CTA: {cta}
 
-        Return the script in JSON format with the following structure:
+        Output format (JSON only — nothing else):
         {{
-          "script": "Full script text to be narrated by TTS",
-          "scenes": [
+        "script": "Full script text to be narrated by TTS (this is the combined narration for the whole video)",
+        "scenes": [
             {{
-              "scene_number": 1,
-              "visual_description": "Detailed description of the visual for this scene",
-              "voiceover_text": "Text to be narrated during this scene",
-              "duration_seconds": 3
+            "scene_number": 1,
+            "visual_description": "Detailed visual direction for this scene (up to 500 tokens)",
+            "voiceover_text": "Exact spoken text for this scene",
+            "duration_seconds": 3
             }},
             ...
-          ],
-          "total_duration": 60
+        ],
+        "total_duration": 60
         }}
 
-        **CRITICAL INSTRUCTION:** The generated script **MUST** have between **250 and 280 tokens**. It is **ESSENTIAL** that the token count is within this range for keep the video duration arround 70 seconds.
+        Token and structure constraints (must be followed exactly):
+        - The **"script"** field (the narration text) MUST contain between **250 and 280 tokens** (inclusive). Do not output fewer than 250 or more than 280 tokens.
+        - Scene descriptions may use up to 500 tokens each.
+        - The sum of all scene `duration_seconds` must equal **60**.
+        - Respond **only** with the JSON object described above. Do not include any explanation, extra metadata, or markdown.
+        - Maintain cultural sensitivity and avoid inventing modern-sounding facts or false historical claims. If a detail is uncertain, present it as "legend" or "according to some stories".
 
-        Ensure:
-        1. The script is entertaining, relatable, and uses language and pacing suitable for TikTok's short-form, attention-driven format.
-        2. **TOKEN RESTRICTION:** The generated script must have **EXACTLY** between 250 and 280 tokens. DO NOT EXCEED 280 and DO NOT GO BELOW 250.
-        3. Scene descriptions can use up to 500 tokens.
-        4. Each scene has a clear visual description and corresponding voiceover text.
-        5. The total duration is exactly 60 seconds.
+        FINAL CHECK:
+        - Before returning, validate twice that the "script" token count is within 250–280 tokens and that `total_duration` is 60.
+        - If you cannot meet these constraints, return a JSON error object with keys `error` and `message` (but prefer to produce a compliant script).
 
-        **REPEATING:** Ensure that the final script **OBLIGATORILY** has a minimum of 250 tokens and a maximum of 280 tokens. The token count **MUST** be respected.
-
-        Remember: The **TOKEN RESTRICTION** (item 1) is **CRITICAL** and must be **STRICTLY** followed.
-
-        **FINAL REVIEW:** Before finalizing, double-check **TWICE** if the script fits **PERFECTLY** within the 250 to 280 token count. This limit is **NON-NEGOTIABLE**.
-
-
-        """
+        Create the script now.
+        """)
 
         completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            temperature=0.5,
-            max_tokens=1024,
+            model="gpt-4o",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.6,
+            max_tokens=1200,  # increased to allow room for full JSON wrapper
             response_format={"type": "json_object"}
         )
 
-        response = json.loads(completion.choices[0].message.content)
+        # Debug: Print raw response
+        raw_content = completion.choices[0].message.content
+        print(f"\n[DEBUG] Raw API Response (first 500 chars):\n{raw_content[:500]}...\n")
+
+        try:
+            response = json.loads(raw_content)
+        except json.JSONDecodeError as e:
+            print(f"\n[ERROR] JSON Parse Error: {e}")
+            print(f"[ERROR] Response content:\n{raw_content}\n")
+            raise ValueError(f"Failed to parse API response as JSON: {e}")
 
         if not all(key in response for key in ["script", "scenes", "total_duration"]):
+            print(f"\n[ERROR] Missing required keys in response")
+            print(f"[ERROR] Response keys: {list(response.keys())}")
+            print(f"[ERROR] Response content: {json.dumps(response, indent=2)[:1000]}")
             raise ValueError("Invalid JSON structure from API response")
 
         return response
 
-    except json.JSONDecodeError:
-        raise ValueError("Failed to parse API response as JSON")
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Failed to parse API response as JSON: {str(e)}")
     except Exception as e:
+        print(f"\n[ERROR] Exception type: {type(e).__name__}")
+        print(f"[ERROR] Exception message: {str(e)}")
         raise RuntimeError(f"Script generation failed: {str(e)}")
 
 def save_script(script_data: dict, output_path: str) -> None:
@@ -106,7 +115,7 @@ def main():
         cta = input("Enter call to action (CTA): ")
         output_path = "script.json"
 
-        print("\n🚀 Generating script with Llama3...")
+        print("\n🚀 Generating script with OpenAI GPT-4o...")
         script_data = generate_script(topic, style, target_audience, cta)
         
         save_script(script_data, output_path)

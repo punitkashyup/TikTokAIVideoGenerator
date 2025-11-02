@@ -1,10 +1,55 @@
 import os
+import platform
+import shutil
 from pathlib import Path
 from moviepy.editor import ImageSequenceClip, AudioFileClip, concatenate_videoclips, CompositeVideoClip
 from moviepy.video.fx.all import fadein, fadeout
 from moviepy.config import change_settings
 
-change_settings({"IMAGEMAGICK_BINARY": r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\\magick.exe"})
+# Auto-detect ImageMagick binary based on platform
+def get_imagemagick_binary():
+    """Automatically detect ImageMagick binary path based on platform"""
+    system = platform.system()
+
+    if system == "Windows":
+        # Common Windows installation paths
+        possible_paths = [
+            r"C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\magick.exe",
+            r"C:\Program Files\ImageMagick\magick.exe",
+        ]
+        for path in possible_paths:
+            if os.path.exists(path):
+                return path
+    elif system == "Darwin":  # macOS
+        # Try to find convert in common locations
+        convert_path = shutil.which("convert")
+        if convert_path:
+            return convert_path
+        # Common Homebrew paths
+        possible_paths = [
+            "/opt/homebrew/bin/convert",  # Apple Silicon
+            "/usr/local/bin/convert",      # Intel Mac
+        ]
+        for path in possible_paths:
+            if os.path.exists(path):
+                return path
+    elif system == "Linux":
+        convert_path = shutil.which("convert")
+        if convert_path:
+            return convert_path
+
+    return None
+
+# Set ImageMagick binary
+imagemagick_path = get_imagemagick_binary()
+if imagemagick_path:
+    change_settings({"IMAGEMAGICK_BINARY": imagemagick_path})
+    print(f"✓ ImageMagick found at: {imagemagick_path}")
+else:
+    print("⚠️ ImageMagick not found. Please install it:")
+    print("  macOS: brew install imagemagick")
+    print("  Linux: sudo apt-get install imagemagick")
+    print("  Windows: Download from https://imagemagick.org/script/download.php")
 
 def calculate_image_duration(audio_path: Path, num_images: int) -> float:
     """

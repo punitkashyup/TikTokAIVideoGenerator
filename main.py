@@ -51,35 +51,42 @@ def main():
         video_path = project_path / "final_video.mp4"
         final_video_path = project_path / "final_video_with_captions.mp4"
 
-        print("\n🚀 Generating script with Llama3...")
+        print("\n🚀 Generating script with OpenAI GPT-4o...")
         script_data = generate_script(topic, style, target_audience, cta)
         save_script(script_data, script_path)
 
-        print("\n🎨 Generating image prompts...")
+        print("\n🎨 Generating image prompts with GPT-4o...")
         generate_image_prompts(script_path, image_prompts_path)
 
-        print("\n🌄 Generating images with FLUX-1...")
+        print("\n🌄 Generating images with Google Gemini Imagen 4.0...")
         generate_images(image_prompts_path, images_dir)
 
-        print("\n🔊 Generating audio...")
+        print("\n🔊 Generating audio with ElevenLabs (Hindi voice)...")
         generate_audio(script_path, audio_dir)
 
-        print("\n🔍 Generating captions...")
+        print("\n🔍 Generating captions with OpenAI Whisper...")
         generate_captions(audio_dir / "voiceover.mp3", captions_dir)
 
-        print("\n🎥 Composing video...")
+        print("\n🎥 Composing video with MoviePy...")
         create_video(images_dir, audio_dir / "voiceover.mp3", video_path)
 
         print("\n📝 Adding captions to video...")
         add_captions(video_path, captions_dir / "captions.json", final_video_path)
 
-        print(f"\n📝 Total duration: {script_data['total_duration']}s")
-        print(f"🎬 Number of scenes: {len(script_data['scenes'])}")
-        print(f"🖼️  Generated images: {len(list(images_dir.glob('*.jpeg')))}/20")
-        print(f"🔊 Audio generated: {os.path.exists(audio_dir / 'voiceover.mp3')}")
-        print(f"🔍 Captions generated: {os.path.exists(captions_dir / 'captions.json')}")
-        print(f"🎥 Video generated: {os.path.exists(video_path)}")
-        print(f"🎥 Video with captions generated: {os.path.exists(final_video_path)}")
+        print("\n" + "="*60)
+        print("✨ VIDEO GENERATION COMPLETE! ✨")
+        print("="*60)
+        print(f"\n📊 Summary:")
+        print(f"  📝 Total duration: {script_data['total_duration']}s")
+        print(f"  🎬 Number of scenes: {len(script_data['scenes'])}")
+        print(f"  🖼️  Generated images: {len(list(images_dir.glob('*.jpeg')))}/20")
+        print(f"  🔊 Audio generated: {'✓' if os.path.exists(audio_dir / 'voiceover.mp3') else '✗'}")
+        print(f"  🔍 Captions generated: {'✓' if os.path.exists(captions_dir / 'captions.json') else '✗'}")
+        print(f"  🎥 Base video: {'✓' if os.path.exists(video_path) else '✗'}")
+        print(f"  🎬 Final video: {'✓' if os.path.exists(final_video_path) else '✗'}")
+        print(f"\n📁 Output location: {project_path.absolute()}")
+        print(f"🎥 Final video: {final_video_path.name}")
+        print("="*60)
 
     except Exception as e:
         print(f"❌ Error: {str(e)}")
