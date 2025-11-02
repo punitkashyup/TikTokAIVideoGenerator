@@ -1,24 +1,26 @@
 import os
 import json
 import base64
+import requests
 from pathlib import Path
 from typing import List, Dict
-import google.generativeai as genai
+from PIL import Image
+from io import BytesIO
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
 
-def get_google_api_key() -> str:
-    """Get Google API key from environment variable"""
-    api_key = os.getenv("GOOGLE_API_KEY")
+def get_openrouter_api_key() -> str:
+    """Get OpenRouter API key from environment variable"""
+    api_key = os.getenv("OPENROUTER_API_KEY")
     if not api_key:
-        raise ValueError("GOOGLE_API_KEY environment variable not found. Please set it in .env file.")
+        raise ValueError("OPENROUTER_API_KEY environment variable not found. Please set it in .env file.")
     return api_key
 
 def generate_images(image_prompts_path: str, output_dir: str) -> None:
     """
-    Generate images from JSON prompts file using Google Gemini Imagen model
+    Generate images from JSON prompts file using OpenRouter with google/gemini-2.5-flash-image (Nano Banana)
     Args:
         image_prompts_path: Path to JSON file with prompts
         output_dir: Directory to save generated images
@@ -31,12 +33,8 @@ def generate_images(image_prompts_path: str, output_dir: str) -> None:
 
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    # Configure Google Gemini API
-    api_key = get_google_api_key()
-    genai.configure(api_key=api_key)
-
-    # Initialize the Imagen model
-    model = genai.ImageGenerationModel("imagen-4.0-generate-001")
+    # Configure OpenRouter API
+    api_key = get_openrouter_api_key()
 
     with open(image_prompts_path, "r") as f:
         prompts_data = json.load(f)
@@ -57,33 +55,65 @@ def generate_images(image_prompts_path: str, output_dir: str) -> None:
         )
 
         try:
-            # Generate image using Google Gemini Imagen
-            result = model.generate_images(
-                prompt=prompt_text,
-                number_of_images=1,
-                aspect_ratio="9:16",  # Vertical format for TikTok/Reels
-                safety_filter_level="block_only_high",
-                person_generation="allow_adult"
+            # Generate image using OpenRouter - google/gemini-2.5-flash-image (Nano Banana)
+            response = requests.post(
+                url="https://openrouter.ai/api/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {api_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": "google/gemini-2.5-flash-image",
+                    "messages": [
+                        {
+                            "role": "user",
+                            "content": prompt_text
+                        }
+                    ],
+                    "modalities": ["image", "text"]
+                },
+                timeout=60
             )
 
-            if result.images:
-                image_data = result.images[0]
+            if response.status_code == 200:
+                result = response.json()
 
-                existing_files = list(output_dir.glob("*.jpeg"))
-                next_number = len(existing_files) + 1
-                image_path = output_dir / f"{next_number}.jpeg"
+                # Extract images from response
+                if result.get("choices") and len(result["choices"]) > 0:
+                    message = result["choices"][0]["message"]
 
-                # Save the image
-                image_data._pil_image.save(image_path, format="JPEG")
-                print(f"✅ Image saved to {image_path}")
+                    if message.get("images") and len(message["images"]) > 0:
+                        # Get the first image (base64 encoded data URL)
+                        image_data_url = message["images"][0]["image_url"]["url"]
+
+                        # Remove data URL prefix (data:image/png;base64,)
+                        if image_data_url.startswith("data:image"):
+                            base64_data = image_data_url.split(",", 1)[1]
+                            image_bytes = base64.b64decode(base64_data)
+
+                            existing_files = list(output_dir.glob("*.jpeg"))
+                            next_number = len(existing_files) + 1
+                            image_path = output_dir / f"{next_number}.jpeg"
+
+                            # Save the image
+                            img = Image.open(BytesIO(image_bytes))
+                            img.save(image_path, format="JPEG")
+                            print(f"✅ Image saved to {image_path}")
+                        else:
+                            print(f"⚠️ Unexpected image format for prompt {i}")
+                    else:
+                        print(f"⚠️ No image generated for prompt {i}")
+                else:
+                    print(f"⚠️ No response choices for prompt {i}")
             else:
-                print(f"⚠️ No image generated for prompt {i}")
+                print(f"⚠️ Failed to generate image {i}: {response.status_code} - {response.text}")
 
         except Exception as e:
             print(f"⚠️ Failed to generate image {i}: {str(e)}")
 
 if __name__ == "__main__":
+    # Example usage - update paths as needed
     generate_images(
-        image_prompts_path="C:\\Users\\Gabriel\\Documents\\TikTokAIVideoGenerator\\video8\\image_prompts.json",
+        image_prompts_path="image_prompts.json",
         output_dir="generated_images"
     )

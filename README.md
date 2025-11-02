@@ -13,7 +13,7 @@ This project is a Python-based tool for generating vertical videos optimized for
 ## Features
 
 - **Script Generation**: Create engaging video scripts using OpenAI's GPT-4o model.
-- **Image Generation**: Generate high-quality images using Google Gemini's Imagen 4.0 model.
+- **Image Generation**: Generate high-quality images using OpenRouter with Google Gemini 2.5 Flash Image (Nano Banana).
 - **Audio Generation**: Convert scripts to natural-sounding audio using ElevenLabs with Eleven Multilingual v2 (Hindi voice support).
 - **Caption Generation**: Transcribe audio to precise word-level captions using OpenAI's Whisper model.
 - **Video Composition**: Combine images, audio, and captions into a final video using MoviePy.
@@ -29,7 +29,7 @@ Before running the project, ensure you have the following:
 1. **Python 3.11+**: Install Python from [python.org](https://www.python.org/downloads/).
 2. **API Keys**:
    - **OpenAI API key** (for script generation and image prompts) - [Get API Key](https://platform.openai.com/api-keys)
-   - **Google Gemini API key** (for image generation) - [Get API Key](https://makersuite.google.com/app/apikey)
+   - **OpenRouter API key** (for image generation) - [Get API Key](https://openrouter.ai/keys)
    - **ElevenLabs API key** (for audio synthesis) - [Get API Key](https://elevenlabs.io/app/settings/api-keys)
 3. **FFmpeg**: Required for audio and video processing. Download from [ffmpeg.org](https://ffmpeg.org/).
 4. **ImageMagick**: Required for caption overlay on videos.
@@ -60,8 +60,8 @@ Before running the project, ensure you have the following:
    # OpenAI API Configuration
    OPENAI_API_KEY=your-openai-api-key-here
 
-   # Google Gemini API Configuration
-   GOOGLE_API_KEY=your-google-api-key-here
+   # OpenRouter API Configuration
+   OPENROUTER_API_KEY=your-openrouter-api-key-here
 
    # ElevenLabs API Configuration
    ELEVENLABS_API_KEY=your-elevenlabs-api-key-here
@@ -119,8 +119,8 @@ python main.py
 - Saves the prompts as `image_prompts.json`.
 
 ### 3. Image Generation
-- Uses **Google Gemini Imagen 4.0** to generate high-quality images.
-- Model: `imagen-4.0-generate-001`
+- Uses **OpenRouter** with **Google Gemini 2.5 Flash Image** (Nano Banana) to generate high-quality images.
+- Model: `google/gemini-2.5-flash-image`
 - Aspect ratio: 9:16 (vertical format for TikTok/Reels)
 - Saves images in the `images/` folder.
 
@@ -190,7 +190,7 @@ You can customize voice settings in `utils/audio_generator.py`:
 - Verify that your API keys in `.env` are correct and active.
 - Check API quota/credits:
   - **OpenAI**: [Usage Dashboard](https://platform.openai.com/usage)
-  - **Google Gemini**: [API Console](https://console.cloud.google.com/)
+  - **OpenRouter**: [Dashboard](https://openrouter.ai/activity)
   - **ElevenLabs**: [Subscription Page](https://elevenlabs.io/app/subscription)
 
 ### Voice ID Issues (ElevenLabs)
@@ -212,7 +212,7 @@ This project is licensed under the Creative Commons Zero v1.0 Universal license.
 ## Technology Stack
 
 - **OpenAI GPT-4o**: Script and image prompt generation.
-- **Google Gemini Imagen 4.0**: AI-powered image generation.
+- **OpenRouter + Google Gemini 2.5 Flash Image**: AI-powered image generation.
 - **ElevenLabs**: Premium text-to-speech with multilingual support.
 - **OpenAI Whisper**: State-of-the-art speech-to-text transcription.
 - **MoviePy**: Video composition and editing.

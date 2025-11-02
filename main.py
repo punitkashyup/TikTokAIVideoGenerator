@@ -58,7 +58,7 @@ def main():
         print("\n🎨 Generating image prompts with GPT-4o...")
         generate_image_prompts(script_path, image_prompts_path)
 
-        print("\n🌄 Generating images with Google Gemini Imagen 4.0...")
+        print("\n🌄 Generating images with OpenRouter (google/gemini-2.5-flash-image - Nano Banana)...")
         generate_images(image_prompts_path, images_dir)
 
         print("\n🔊 Generating audio with ElevenLabs (Hindi voice)...")

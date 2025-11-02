@@ -26,15 +26,22 @@ def generate_script(topic: str, style: str, target_audience: str, cta: str) -> d
 
         prompt = dedent(f"""
         You are a creative assistant specialized in writing short, high-retention video scripts for TikTok/Instagram Reels/Shorts.
-        We are making an Indian mythology storytelling video in a Hinglish-friendly style. Follow these rules exactly:
+        We are making an Indian mythology storytelling video in HINGLISH (Hindi + English mix). Follow these rules exactly:
 
-        1) HOOK (first 3 seconds): Open with a bold, surprising, or emotional line that grabs attention.
-        2) BODY (next ~50–65 seconds): Tell the mythic story concisely, with vivid sensory details, dramatic pacing, and simple Hinglish/English phrases. Keep sentences short and punchy — perfect for TTS narration.
-        3) CTA (last ~7–10 seconds): Finish with a clear call-to-action (like follow, share, comment), delivered emotionally.
+        **HINGLISH REQUIREMENTS (VERY IMPORTANT):**
+        - Mix Hindi and English naturally throughout the script
+        - Use common Hindi words like: "kya", "aapko", "pata hai", "kahani", "ek baar", "bahut", "sabse", "lekin", "par", "aur", "yeh"
+        - Use Hindi for emotional/cultural words: "bhakt", "shakti", "dharma", "puja", "mandir", "devi", "bhagwan"
+        - Example Hinglish: "Kya aapko pata hai Krishna ne ek baar poore pahaad ko apni choti ungli par utha liya tha?"
+        - Keep it natural and easy to understand for Indian youth
+
+        1) HOOK (first 3 seconds): Open with a bold Hinglish question or statement
+        2) BODY (next ~50–65 seconds): Tell the mythic story in Hinglish with vivid details
+        3) CTA (last ~7–10 seconds): Finish with emotional Hinglish CTA
 
         Content requirements:
         - Topic: {topic}
-        - Style: {style}  # e.g., "dramatic, emotional, conversational, Hinglish"
+        - Style: {style}
         - Target Audience: {target_audience}
         - CTA: {cta}
 
