@@ -1,0 +1,48 @@
+{
+  "script": "Kya aapko pata hai Krishna ke bachpan ki ek untold kahani? Ek baar, Gokul mein ek bhayankar toofan aaya. Log bahut ghabra gaye aur bhagwan se prarthna karne lage. Krishna, jo sirf ek chhote bacche the, unhone kaha, 'Chinta mat karo, main hoon na!' Aur tab, Krishna ne apni choti ungli par Govardhan parvat utha liya. Pura gaon us parvat ke neeche chhup gaya, aur sab surakshit rahe. Yeh dekh kar sabhi log hairaan reh gaye aur unki bhakti aur bhi badh gayi. Logon ne unhe bhagwan ka roop mana. Krishna ki shakti aur unka pyaar sabke liye ek misaal ban gaya. Unhone sabko dikhaya ki sachcha dharma kya hota hai. Yeh kahani humein sikhati hai ki jab humara vishwas mazboot ho, toh hum kisi bhi mushkil ka samna kar sakte hain. So, agar aapko yeh kahani acchi lagi, to follow kijiye aur jaaniye aur bhi amazing kahaniyan hamari mythology se!",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "visual_description": "A stormy scene in Gokul with dark clouds and villagers looking worried as they gather, praying in front of a small temple.",
+      "voiceover_text": "Kya aapko pata hai Krishna ke bachpan ki ek untold kahani?",
+      "duration_seconds": 3
+    },
+    {
+      "scene_number": 2,
+      "visual_description": "Young Krishna, with a calm demeanor, stands amidst the chaos, assuring the villagers with his confident smile.",
+      "voiceover_text": "Ek baar, Gokul mein ek bhayankar toofan aaya. Log bahut ghabra gaye aur bhagwan se prarthna karne lage.",
+      "duration_seconds": 10
+    },
+    {
+      "scene_number": 3,
+      "visual_description": "Krishna lifting the Govardhan mountain effortlessly on his little finger, with villagers gathered underneath, safe and sound.",
+      "voiceover_text": "Krishna, jo sirf ek chhote bacche the, unhone kaha, 'Chinta mat karo, main hoon na!' Aur tab, Krishna ne apni choti ungli par Govardhan parvat utha liya.",
+      "duration_seconds": 15
+    },
+    {
+      "scene_number": 4,
+      "visual_description": "Villagers express amazement and gratitude, with a sense of peace and joy as they look up to Krishna.",
+      "voiceover_text": "Pura gaon us parvat ke neeche chhup gaya, aur sab surakshit rahe. Yeh dekh kar sabhi log hairaan reh gaye aur unki bhakti aur bhi badh gayi.",
+      "duration_seconds": 10
+    },
+    {
+      "scene_number": 5,
+      "visual_description": "Krishna, surrounded by a divine aura, is worshipped by the villagers as they offer flowers and prayers.",
+      "voiceover_text": "Logon ne unhe bhagwan ka roop mana. Krishna ki shakti aur unka pyaar sabke liye ek misaal ban gaya.",
+      "duration_seconds": 8
+    },
+    {
+      "scene_number": 6,
+      "visual_description": "A serene scene showing Krishna playing the flute, symbolizing peace and dharma.",
+      "voiceover_text": "Unhone sabko dikhaya ki sachcha dharma kya hota hai.",
+      "duration_seconds": 5
+    },
+    {
+      "scene_number": 7,
+      "visual_description": "A call to action with vibrant text on screen, inviting viewers to follow for more stories.",
+      "voiceover_text": "So, agar aapko yeh kahani acchi lagi, to follow kijiye aur jaaniye aur bhi amazing kahaniyan hamari mythology se!",
+      "duration_seconds": 9
+    }
+  ],
+  "total_duration": 60
+}
