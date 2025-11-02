@@ -68,7 +68,7 @@ def main():
         generate_captions(audio_dir / "voiceover.wav", captions_dir)
 
         print("\n🎥 Composing video with MoviePy...")
-        create_video(images_dir, audio_dir / "voiceover.wav", video_path)
+        create_video(images_dir, audio_dir / "voiceover.wav", video_path, script_path)
 
         print("\n📝 Adding captions to video...")
         add_captions(video_path, captions_dir / "captions.json", final_video_path)

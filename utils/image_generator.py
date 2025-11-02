@@ -56,12 +56,15 @@ def generate_images(image_prompts_path: str, output_dir: str) -> None:
         )
 
         try:
-            # Generate image using Google Gemini Imagen
+            # Generate image using Google Gemini Imagen with 9:16 aspect ratio (vertical format for TikTok/Reels/Shorts)
             response = client.models.generate_content(
                 model="gemini-2.5-flash-image",
                 contents=[prompt_text],
                 config=types.GenerateContentConfig(
-                    response_modalities=['Image']
+                    response_modalities=['Image'],
+                    image_config=types.ImageConfig(
+                        aspect_ratio='9:16'
+                    )
                 )
             )
 

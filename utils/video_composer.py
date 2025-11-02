@@ -51,63 +51,93 @@ else:
     print("  Linux: sudo apt-get install imagemagick")
     print("  Windows: Download from https://imagemagick.org/script/download.php")
 
-def calculate_image_duration(audio_path: Path, num_images: int) -> float:
+def create_video_clip(image_folder: Path, audio_path: Path, output_path: Path, script_path: Path) -> None:
     """
-    Calculate the duration each image should be displayed based on audio length.
+    Create a video from images and audio using scene durations from script.json.
+    Each image is mapped to its corresponding scene and displayed for the scene's duration.
     """
     try:
-        audio = AudioFileClip(str(audio_path))
-        audio_duration = audio.duration
-        return audio_duration / num_images
-    except Exception as e:
-        raise RuntimeError(f"Failed to calculate image duration: {str(e)}")
+        import json
 
-def create_video_clip(image_folder: Path, audio_path: Path, output_path: Path) -> None:
-    """
-    Create a video from images and audio.
-    """
-    try:
-        image_files = sorted(image_folder.glob("*.jpeg"))
+        # Load scene data from script.json
+        with open(script_path, "r") as f:
+            script_data = json.load(f)
+
+        scenes = script_data.get("scenes", [])
+        if not scenes:
+            raise ValueError("No scenes found in script.json")
+
+        # Get all images sorted by number
+        image_files = sorted(image_folder.glob("*.jpeg"), key=lambda x: int(x.stem))
         if not image_files:
             raise ValueError("No images found in the specified folder")
 
-        image_duration = calculate_image_duration(audio_path, len(image_files))
-        print(f"⏱️  Each image will be displayed for {image_duration:.2f} seconds")
+        num_scenes = len(scenes)
+        num_images = len(image_files)
 
+        print(f"📊 Found {num_scenes} scenes and {num_images} images")
+
+        # Use only the first N images where N = number of scenes
+        if num_images < num_scenes:
+            raise ValueError(f"Not enough images! Need {num_scenes} images for {num_scenes} scenes, but found only {num_images}")
+
+        if num_images > num_scenes:
+            print(f"⚠️  Using first {num_scenes} images (found {num_images} total)")
+            image_files = image_files[:num_scenes]
+
+        # Create video clips matching each scene duration
         clips = []
-        for i, image_file in enumerate(image_files):
-            clip = ImageSequenceClip([str(image_file)], durations=[image_duration])
-            
+        for i, scene in enumerate(scenes):
+            scene_num = scene.get("scene_number", i + 1)
+            duration = scene.get("duration_seconds", 3)
+            visual_desc = scene.get("visual_description", "")[:50]  # First 50 chars
+
+            print(f"⏱️  Scene {scene_num}: {duration}s - {visual_desc}...")
+
+            # Map scene to corresponding image
+            image_file = image_files[i]
+            clip = ImageSequenceClip([str(image_file)], durations=[duration])
+
+            # Add fade effects (except for first/last)
             if i > 0:
-                clip = fadein(clip, 0.5)  
-            if i < len(image_files) - 1:
-                clip = fadeout(clip, 0.5) 
-            
+                clip = fadein(clip, 0.5)
+            if i < len(scenes) - 1:
+                clip = fadeout(clip, 0.5)
+
             clips.append(clip)
 
+        # Concatenate all clips
         video = concatenate_videoclips(clips, method="compose")
 
+        # Add audio
         audio = AudioFileClip(str(audio_path))
         video = video.set_audio(audio)
 
+        # Write final video (9:16 aspect ratio - vertical format for TikTok/Reels/Shorts)
+        # Video resolution is determined by the input images
         video.write_videofile(
             str(output_path),
-            fps=30,  
-            codec="libx264",  
-            audio_codec="aac", 
-            threads=4  
+            fps=30,
+            codec="libx264",
+            audio_codec="aac",
+            threads=4
         )
 
         print(f"✅ Video saved to: {output_path}")
+        print(f"✅ Total video duration: {sum(s.get('duration_seconds', 3) for s in scenes)} seconds")
 
     except Exception as e:
         raise RuntimeError(f"Failed to create video: {str(e)}")
 
-def main(image_folder: Path, audio_path: Path, output_path: Path) -> None:
+def main(image_folder: Path, audio_path: Path, output_path: Path, script_path: Path = None) -> None:
     """
     Generate a video from images and audio.
+    If script_path is provided, uses scene durations from script.json for timing.
     """
     try:
-        create_video_clip(image_folder, audio_path, output_path)
+        if script_path is None:
+            raise ValueError("script_path is required to read scene durations")
+
+        create_video_clip(image_folder, audio_path, output_path, script_path)
     except Exception as e:
         print(f"❌ Error: {str(e)}")

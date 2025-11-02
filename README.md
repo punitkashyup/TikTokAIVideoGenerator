@@ -1,6 +1,6 @@
 # TikTok AI Video Generator
 
-This project is a Python-based tool for generating vertical videos optimized for platforms like TikTok, Instagram Reels, and YouTube Shorts. It uses state-of-the-art AI models for script generation, image creation, audio synthesis, and captioning to automate the entire video creation process.
+This project is a Python-based tool for generating vertical (9:16) videos optimized for platforms like TikTok, Instagram Reels, and YouTube Shorts. It uses state-of-the-art AI models for script generation, image creation, audio synthesis, and captioning to automate the entire video creation process.
 
 ## Example output
 <a href=".github/final_video_with_captions.mp4">
@@ -110,14 +110,14 @@ python main.py
 - Saves the script as `script.json`.
 
 ### 2. Image Prompt Generation
-- Uses **OpenAI GPT-4o** to create 18-20 detailed image prompts from the script.
+- Uses **OpenAI GPT-4o** to create detailed image prompts from the script (one per scene).
 - Structured prompts optimized for cinematic, mythological visuals.
 - Saves the prompts as `image_prompts.json`.
 
 ### 3. Image Generation
 - Uses **Google Gemini 2.5 Flash Image** to generate high-quality images.
 - Model: `gemini-2.5-flash-image`
-- Aspect ratio: 9:16 (vertical format for TikTok/Reels)
+- Aspect ratio: 9:16 (vertical format for TikTok/Reels/Shorts)
 - Saves images in the `images/` folder.
 
 ### 4. Audio Generation
@@ -155,7 +155,7 @@ python main.py
 - Width: 80% of video width.
 
 ### Video Format
-- Resolution: 1080x1920 (vertical format).
+- Resolution: 1080x1920 (vertical format for TikTok/Reels/Shorts).
 - Frame rate: 30 FPS.
 - Codec: H.264 (libx264) for video, AAC for audio.
 - Image transitions: Fade-in/fade-out (0.5 seconds).
