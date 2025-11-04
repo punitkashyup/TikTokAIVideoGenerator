@@ -54,7 +54,8 @@ else:
 def create_video_clip(image_folder: Path, audio_path: Path, output_path: Path, script_path: Path) -> None:
     """
     Create a video from images and audio using scene durations from script.json.
-    Each image is mapped to its corresponding scene and displayed for the scene's duration.
+    If 0.jpeg exists (title card), it's displayed for 2.5s at the start with NO voiceover.
+    Remaining images (1.jpeg onwards) are mapped to scenes and displayed for their durations.
     """
     try:
         import json
@@ -77,16 +78,39 @@ def create_video_clip(image_folder: Path, audio_path: Path, output_path: Path, s
 
         print(f"📊 Found {num_scenes} scenes and {num_images} images")
 
-        # Use only the first N images where N = number of scenes
-        if num_images < num_scenes:
-            raise ValueError(f"Not enough images! Need {num_scenes} images for {num_scenes} scenes, but found only {num_images}")
+        # Check if title card exists (0.jpeg)
+        title_card_path = image_folder / "0.jpeg"
+        has_title_card = title_card_path.exists()
+        title_card_duration = 2.5  # Title card displays for 2.5 seconds
 
-        if num_images > num_scenes:
-            print(f"⚠️  Using first {num_scenes} images (found {num_images} total)")
-            image_files = image_files[:num_scenes]
+        if has_title_card:
+            print(f"🎬 Found title card (0.jpeg) - will display for {title_card_duration}s at start")
+            # Remove title card from scene images list
+            scene_images = [img for img in image_files if img.stem != "0"]
+        else:
+            scene_images = image_files
 
-        # Create video clips matching each scene duration
+        num_scene_images = len(scene_images)
+
+        # Validate we have enough images for scenes
+        if num_scene_images < num_scenes:
+            raise ValueError(f"Not enough images! Need {num_scenes} images for {num_scenes} scenes, but found only {num_scene_images}")
+
+        if num_scene_images > num_scenes:
+            print(f"⚠️  Using first {num_scenes} images for scenes (found {num_scene_images} total)")
+            scene_images = scene_images[:num_scenes]
+
+        # Create video clips
         clips = []
+
+        # Add title card if it exists (silent intro with NO voiceover)
+        if has_title_card:
+            print(f"⏱️  Title Card: {title_card_duration}s (silent intro)")
+            title_clip = ImageSequenceClip([str(title_card_path)], durations=[title_card_duration])
+            # No fadein for title card - we want it to appear immediately without black frame
+            clips.append(title_clip)
+
+        # Create clips for each scene with their durations
         for i, scene in enumerate(scenes):
             scene_num = scene.get("scene_number", i + 1)
             duration = scene.get("duration_seconds", 3)
@@ -95,11 +119,11 @@ def create_video_clip(image_folder: Path, audio_path: Path, output_path: Path, s
             print(f"⏱️  Scene {scene_num}: {duration}s - {visual_desc}...")
 
             # Map scene to corresponding image
-            image_file = image_files[i]
+            image_file = scene_images[i]
             clip = ImageSequenceClip([str(image_file)], durations=[duration])
 
-            # Add fade effects (except for first/last)
-            if i > 0:
+            # Add fade effects (except for first/last scene)
+            if i > 0 or has_title_card:  # Fade in if not first, or if title card exists
                 clip = fadein(clip, 0.5)
             if i < len(scenes) - 1:
                 clip = fadeout(clip, 0.5)
@@ -124,7 +148,9 @@ def create_video_clip(image_folder: Path, audio_path: Path, output_path: Path, s
         )
 
         print(f"✅ Video saved to: {output_path}")
-        print(f"✅ Total video duration: {sum(s.get('duration_seconds', 3) for s in scenes)} seconds")
+        total_scene_duration = sum(s.get('duration_seconds', 3) for s in scenes)
+        total_video_duration = total_scene_duration + (title_card_duration if has_title_card else 0)
+        print(f"✅ Total video duration: {total_video_duration} seconds ({total_scene_duration}s scenes + {title_card_duration if has_title_card else 0}s title card)")
 
     except Exception as e:
         raise RuntimeError(f"Failed to create video: {str(e)}")
